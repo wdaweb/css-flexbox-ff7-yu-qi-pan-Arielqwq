@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chinese_chess_flexbox</title>
+  <style>
+    * {
+      margin: 0;
+      box-sizing: content-box;
+      list-style: none;
+      font-family: "標楷體";
+    }
+
+    /* body {
+      padding: 20px;
+      overflow: hidden;
+    } */
+
+    .container {
+      width: 80vw;
+      height: 100vh;
+      /* background: #aac; */
+      margin: auto;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 文字_左 */
+    .row1 {
+      border: none;
+      font-size: 40px;
+      font-weight: 550;
+      margin-right: 35px;
+      /* background: #eea; */
+      -webkit-writing-mode: vertical-lr;
+      writing-mode: vertical-lr;
+    }
+
+    /* 文字_右 */
+    .row3 {
+      border: none;
+      font-size: 40px;
+      font-weight: 550;
+      margin-left: 35px;
+
+      -webkit-writing-mode: vertical-lr;
+      writing-mode: vertical-lr;
+    }
+
+    /* 棋盤區 */
+    .row2 {
+      width: 600px;
+      height: 650px;
+      padding: 50px;
+      border: 1px solid #000;
+      /* background: rgb(90, 112, 185); */
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-content: center;
+      flex-wrap: wrap;
+    }
+
+    .row2 .a_col,
+    .row2 .c_col {
+      width: 560px;
+      height: 280px;
+
+      /* background: #bac; */
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* 河 */
+    .row2 .b_col {
+      width: 560px;
+      height: 70px;
+      /* background: #bca; */
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      flex-wrap: wrap;
+    }
+
+    .row2 div {
+      width: 68px;
+      height: 68px;
+      border: 1px solid #000;
+      /* background-color: bisque; */
+    }
+
+    /* 河 */
+    .row2 .col33 {
+      width: 558px;
+      height: 68px;
+      border-top: none;
+      border-bottom: none;
+      height: 70px;
+      border: 1px solid #000;
+      /* background-color: bisque; */
+      margin: 0;
+    }
+
+    /* 上九宮 */
+    .row2 .col04 {
+      position: relative;
+    }
+
+    .row2 .col04::before {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 33px;
+      left: -16px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+
+    .row2 .col04::after {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 34px;
+      left: 54px;
+      background: #000;
+      transform: rotate(134deg);
+    }
+
+    .row2 .col12 {
+      position: relative;
+    }
+
+    .row2 .col12::before {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 34px;
+      left: -16px;
+      background: #000;
+      transform: rotate(135deg);
+    }
+
+    .row2 .col12::after {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 33px;
+      left: 54px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+
+    /* 上九宮 */
+
+
+    /* 下九宮 */
+    .row2 .col53 {
+      position: relative;
+    }
+
+    .row2 .col53::before {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 33px;
+      left: -16px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+
+    .row2 .col53::after {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 34px;
+      left: 54px;
+      background: #000;
+      transform: rotate(134deg);
+    }
+
+    .row2 .col61 {
+      position: relative;
+    }
+
+    .row2 .col61::before {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 34px;
+      left: -16px;
+      background: #000;
+      transform: rotate(135deg);
+    }
+
+    .row2 .col61::after {
+      content: "";
+      position: absolute;
+      width: 99px;
+      height: 1px;
+      top: 33px;
+      left: 54px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+
+    /* 上九宮 */
+
+
+    /* 黑棋------------------------------------- */
+    .row2 .col01 {
+      position: relative;
+    }
+
+    .row2 .col01::before {
+      content: "車";
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col01::after {
+      content: "馬";
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col03 {
+      position: relative;
+    }
+
+    .row2 .col03::before {
+      content: "象";
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col03::after {
+      content: "士";
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+      z-index: 1;
+    }
+
+    .row2 .col05 {
+      position: relative;
+    }
+
+    .row2 .col05::before {
+      content: "將";
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col05::after {
+      content: "士";
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col07 {
+      position: relative;
+    }
+
+    .row2 .col07::before {
+      content: "象";
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col07::after {
+      content: "馬";
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+      z-index: 1;
+    }
+
+    .row2 .col08 {
+      position: relative;
+    }
+
+    .row2 .col08::before {
+      content: "車";
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col17,
+    .row2 .col23 {
+      position: relative;
+    }
+
+    .row2 .col17::after,
+    .row2 .col23::after {
+      content: "包";
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col25,
+    .row2 .col27,
+    .row2 .col29,
+    .row2 .col31 {
+      position: relative;
+    }
+
+    .row2 .col25::before,
+    .row2 .col27::before,
+    .row2 .col29::before,
+    .row2 .col31::before {
+      content: "卒";
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col32 {
+      position: relative;
+    }
+
+    .row2 .col32::before {
+      content: "卒";
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: -30px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    /* 黑棋------------------------------------- */
+
+
+    /* 紅棋 ------------------------------------*/
+    .row2 .col34,
+    .row2 .col36,
+    .row2 .col38,
+    .row2 .col40 {
+      position: relative;
+    }
+
+    .row2 .col34::before,
+    .row2 .col36::before,
+    .row2 .col38::before,
+    .row2 .col40::before {
+      content: "兵";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+      z-index: 1;
+    }
+
+    .row2 .col41 {
+      position: relative;
+    }
+
+    .row2 .col41::before {
+      content: "兵";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+      z-index: 1;
+    }
+
+    .row2 .col43,
+    .row2 .col49 {
+      position: relative;
+    }
+
+    .row2 .col43::before,
+    .row2 .col49::before {
+      content: "炮";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col58 {
+      position: relative;
+    }
+
+    .row2 .col58::before {
+      content: "俥";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col58::after {
+      content: "傌";
+      color: red;
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col60 {
+      position: relative;
+    }
+
+    .row2 .col60::before {
+      content: "相";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col60::after {
+      content: "仕";
+      color: red;
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+      z-index: 1;
+    }
+
+    .row2 .col62 {
+      position: relative;
+    }
+
+    .row2 .col62::before {
+      content: "帥";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col62::after {
+      content: "仕";
+      color: red;
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col64 {
+      position: relative;
+    }
+
+    .row2 .col64::before {
+      content: "相";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: -30px;
+      background: rgb(255, 255, 255);
+    }
+
+    .row2 .col64::after {
+      content: "傌";
+      color: red;
+
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+      z-index: 1;
+    }
+
+    .row2 .col65 {
+      position: relative;
+    }
+
+    .row2 .col65::before {
+      content: "俥";
+      color: red;
+      line-height: 55px;
+      text-align: center;
+      font-size: 38px;
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      top: 43px;
+      left: 40px;
+      background: rgb(255, 255, 255);
+    }
+
+    /* 紅棋 ------------------------------------*/
+
+    /* 楚河漢界 */
+    .b_col .col33 {
+      width: 560px;
+      height: 72px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-content: center;
+      flex-wrap: wrap;
+    }
+
+    .b_col .col33 .col33_01,
+    .b_col .col33 .col33_02 {
+      width: 115px;
+      height: 68px;
+      border: none;
+      font-size: 55px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row1">棋盤裡，車無輪，馬無韁，叫聲將軍提防提防</div>
+    <div class="row2">
+      <div class="a_col">
+        <div class="col01"></div>
+        <div class="col02"></div>
+        <div class="col03"></div>
+        <div class="col04"></div>
+        <div class="col05"></div>
+        <div class="col06"></div>
+        <div class="col07"></div>
+        <div class="col08"></div>
+        <div class="col09"></div>
+        <div class="col10"></div>
+        <div class="col11"></div>
+        <div class="col12"></div>
+        <div class="col13"></div>
+        <div class="col14"></div>
+        <div class="col15"></div>
+        <div class="col16"></div>
+        <div class="col17"></div>
+        <div class="col18"></div>
+        <div class="col19"></div>
+        <div class="col20"></div>
+        <div class="col21"></div>
+        <div class="col22"></div>
+        <div class="col23"></div>
+        <div class="col24"></div>
+        <div class="col25"></div>
+        <div class="col26"></div>
+        <div class="col27"></div>
+        <div class="col28"></div>
+        <div class="col29"></div>
+        <div class="col30"></div>
+        <div class="col31"></div>
+        <div class="col32"></div>
+      </div>
+      <div class="b_col">
+        <div class="col33">
+          <div class="col33_01">楚河</div>
+          <div class="col33_02">漢界</div>
+        </div>
+      </div>
+      <div class="c_col">
+        <div class="col34"></div>
+        <div class="col35"></div>
+        <div class="col36"></div>
+        <div class="col37"></div>
+        <div class="col38"></div>
+        <div class="col39"></div>
+        <div class="col40"></div>
+        <div class="col41"></div>
+        <div class="col42"></div>
+        <div class="col43"></div>
+        <div class="col44"></div>
+        <div class="col45"></div>
+        <div class="col46"></div>
+        <div class="col47"></div>
+        <div class="col48"></div>
+        <div class="col49"></div>
+        <div class="col50"></div>
+        <div class="col51"></div>
+        <div class="col52"></div>
+        <div class="col53"></div>
+        <div class="col54"></div>
+        <div class="col55"></div>
+        <div class="col56"></div>
+        <div class="col57"></div>
+        <div class="col58"></div>
+        <div class="col59"></div>
+        <div class="col60"></div>
+        <div class="col61"></div>
+        <div class="col62"></div>
+        <div class="col63"></div>
+        <div class="col64"></div>
+        <div class="col65"></div>
+      </div>
+    </div>
+    <div class="row3">圖畫裡，龍不吟，虎不嘯，小小書僮可笑可笑</div>
+  </div>
+</body>
+
+</html>
